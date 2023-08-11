@@ -1,3 +1,25 @@
+----- pre-requisite ------
+
+1. 2 AWS EC2 instance - 1.Master 2.Worker with atleast t2.medium instance type 2 Core CPU and 4GB RAM with ubuntu server 22.04(HVM)LTS 
+AMI-Id:- ami-0f5ee92e2d63afc18
+
+2.Creating a Security Group for the Virtual Machines
+Follow the steps above to create a security group for your virtual machines. Here are the ports that you will need to open for your control plane VMs:
+
+- The master node:
+22 for SSH from your bastion host
+6443 for the Kubernetes API Server
+2379-2380 for the ETCD server
+10250 for the Kubelet health check
+10252 for the Kube controller manager
+10255 for the read only kubelet API
+
+- The worker nodes:
+22 for SSH
+10250 for the kubelet health check
+30000-32767 for external applications. However, it is more likely that you will expose external applications to outside the cluster via load balancers, and restrict access to these ports to within your vpc.
+10255 for the read only kubelet API
+
 ---------------------------------------- Kubeadm Installation ------------------------------------------ 
 
 -------------------------------------- Both Master & Worker Node ---------------------------------------
