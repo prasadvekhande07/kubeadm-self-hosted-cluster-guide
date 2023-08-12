@@ -64,7 +64,6 @@ kubectl get nodes
 -------------On worker node execute the below command which you will get after executing token create command on master------------------------------
  kubeadm join 173.31.44.76:6443 --token n4tfb4.grmew1s1unug0get     --discovery-token-ca-cert-hash sha256:c4dga2eaf5960bed4320d8175dc6a73b1556795b1b7f5aabc07642ed85c67430 --v=5
  kubeadm reset pre-flight checks  # to confirm that no kubeadm init command was executed on this worker node
- kubeadm token create --print-join-command
  kubectl label node ip-172-31-35-236 node-role.kubernetes.io/worker=worker
  kubectl label nodes ip-172-31-83-69 kubernetes.io/role=worker
  kubectl config set-context $(kubectl config current-context) --namespace=dev
